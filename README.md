@@ -1,8 +1,13 @@
 ## Design Phase
 
-### Brainstorming
+Brainstorming Notes
 ![Brainstorming Notes](/images/Brainstorming.png)
-![Comparing and Contrasting 3 Ideas](/images/VennDiagram.png)
+
+Comparing and Contrasting the Three Ideas
+![Venn Diagram of Ideas](/images/VennDiagram.png)
+
+High Level/Simple System Design
+![Diagram of Simple System Design](/images/HighLevelSystemDesign.png)
 
 ## Configuration
 
