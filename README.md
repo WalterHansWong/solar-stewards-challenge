@@ -1,3 +1,9 @@
+## Design Phase
+
+### Brainstorming
+![Brainstorming Notes](/images/Brainstorming.png)
+![Comparing and Contrasting 3 Ideas](/images/VennDiagram.png)
+
 ## Configuration
 
 ### Set up environment variables
