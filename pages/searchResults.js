@@ -23,10 +23,26 @@ const SearchResults = () => {
     }
   }, [query]);
 
-  const handleSaveItem = (product) => {
-    // Implement logic to save the item to MongoDB
-    // Use an API request to server to handle this
-    console.log('Saving item:', product);
+  const handleSaveItem = async (product) => {
+    const userID = localStorage.getItem('userID');
+    if (!userID) {
+      console.error('User ID not found');
+      return;
+    }
+  
+    try {
+      const response = await fetch('/api/saveItem', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userID, product }),
+      });
+      if (!response.ok) throw new Error('Error saving item');
+      console.log('Item saved successfully');
+      // Additional success handling
+    } catch (error) {
+      console.error('Error saving item:', error);
+      // Error handling
+    }
   };
 
   const navigateHome = () => {
