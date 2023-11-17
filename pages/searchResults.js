@@ -4,6 +4,8 @@ import { useRouter } from 'next/router';
 const SearchResults = () => {
   const [results, setResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [saveSuccess, setSaveSuccess] = useState(false);
+  const [saveError, setSaveError] = useState(false);
   const router = useRouter();
   const { query } = router.query;
 
@@ -26,22 +28,29 @@ const SearchResults = () => {
   const handleSaveItem = async (product) => {
     const userID = localStorage.getItem('userID');
     if (!userID) {
-      console.error('User ID not found');
-      return;
+        console.error('User ID not found');
+        return;
     }
-  
+
     try {
-      const response = await fetch('/api/saveItem', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ userID, product }),
-      });
-      if (!response.ok) throw new Error('Error saving item');
-      console.log('Item saved successfully');
-      // Additional success handling
+        const response = await fetch('/api/saveItem', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                userID,
+                product
+            }),
+        });
+        if (!response.ok) throw new Error('Error saving item');
+
+        setSaveSuccess(true);
+        setTimeout(() => setSaveSuccess(false), 3000);
     } catch (error) {
-      console.error('Error saving item:', error);
-      // Error handling
+        console.error('Error saving item:', error);
+        setSaveError(true);
+        setTimeout(() => setSaveError(false), 3000);
     }
   };
 
@@ -55,10 +64,34 @@ const SearchResults = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '20px' }}>
+      <style jsx>{`
+      @keyframes fadein {
+          from { opacity: 0; }
+          to { opacity: 1; }
+      }
+      @keyframes fadeout {
+          from { opacity: 1; }
+          to { opacity: 0; }
+      }
+      /* Additional styles */
+      `}</style>
       <h1>Search Results</h1>
+
+      {saveSuccess && (
+        <div style={{ position: 'fixed', top: '10px', left: '50%', transform: 'translateX(-50%)', backgroundColor: 'lightgreen', padding: '10px', borderRadius: '5px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)', animation: 'fadein 0.5s, fadeout 0.5s 2.5s' }}>
+          Item saved successfully!
+        </div>
+      )}
+
+      {saveError && (
+        <div style={{ position: 'fixed', top: '10px', left: '50%', transform: 'translateX(-50%)', backgroundColor: 'pink', color: 'darkred', padding: '10px', borderRadius: '5px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)', animation: 'fadein 0.5s, fadeout 0.5s 2.5s' }}>
+          Error saving item!
+        </div>
+      )}
+
       <div style={{ marginBottom: '20px' }}>
-        <button onClick={() => router.push('/')} style={{ marginRight: '10px' }}>New Search</button>
-        <button onClick={() => router.push('/savedItems')}>See Saved Items</button>
+        <button onClick={navigateHome} style={{ marginRight: '10px' }}>New Search</button>
+        <button onClick={navigateToSavedItems}>See Saved Items</button>
       </div>
       {isLoading ? (
         <p>Fetching Results from BestBuy...</p>
