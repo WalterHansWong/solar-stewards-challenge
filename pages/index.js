@@ -36,6 +36,10 @@ const Index = () => {
     Router.push(`/searchResults?query=${encodeURIComponent(searchTerm)}`);
   };
 
+  const navigateToSavedItems = () => {
+    Router.push('/savedItems');
+  };
+
   return (
     <div style={{
       height: '100vh',
@@ -60,6 +64,9 @@ const Index = () => {
         />
         <button type="submit" style={{ padding: '10px 20px' }}>Search</button>
       </form>
+      <button onClick={navigateToSavedItems} style={{ marginTop: '20px', padding: '10px 20px' }}>
+        View Saved Items
+      </button>
     </div>
   );
 };

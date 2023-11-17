@@ -59,7 +59,7 @@ const SearchResults = () => {
   };
 
   const navigateToSavedItems = () => {
-    router.push('/savedItems'); // TODO: Navigate to the saved items page
+    router.push('/savedItems');
   };
 
   return (
