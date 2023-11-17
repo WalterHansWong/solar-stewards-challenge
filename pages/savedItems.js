@@ -95,9 +95,11 @@ const SavedItems = () => {
           {/* TODO: Handle case when user has many saved items. Can use infinite scrolling or numerical pages */}
           {/* TODO: Implement sorting of saved items, like by date or price */}
           {savedItems.map(item => (
-            <li key={item.sku} style={{ border: '1px solid #ddd', width: '80%', maxWidth: '500px', margin: '10px', padding: '10px', borderRadius: '8px', textAlign: 'left', wordWrap: 'break-word' }}>
-              <div>Name: {item.name}</div>
-              <div>Price: ${item.salePrice}</div>
+            <li key={item.sku} style={{ border: '1px solid #ddd', width: '80%', maxWidth: '500px', margin: '10px', padding: '10px', borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+              <img src={item.thumbnailImage} alt={item.name} style={{ width: '100px', height: '100px', marginBottom: '10px' }} />
+              <div><strong>Name:</strong> {item.name}</div>
+              <div><strong>Price:</strong> ${item.salePrice}</div>
+              <a href={item.url} target="_blank" rel="noopener noreferrer" style={{ marginTop: '10px', marginBottom: '10px' }}>View on BestBuy</a>
               <button onClick={() => handleDeleteItem(item.sku)} style={{ marginTop: '10px' }}>Delete from Wishlist</button>
             </li>
           ))}
