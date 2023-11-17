@@ -10,13 +10,29 @@
 ![Diagram of Simple System Design](/images/HighLevelSystemDesign.png)
 
 ## Configuration
+### 1 - Through Docker
+1) Get the Docker Image using `docker pull whanswong/solar_stewards:latest`
+2) Then do `docker compose up --build -d`
+3) Access this application at [http://localhost:3000](http://localhost:3000)
 
-### Instructions
+### 2 - Locally
 1) Clone this repo to your local machine
-2) Open Docker
-3) Navigate to the project's directory
-4) Run `docker compose up --build`
-5) Access this application at `http://localhost:3000/`
+2) Navigate to the project's directory
+3) Set up environment variables
+
+Create a file called `.env.local` \
+Create a variable called `MONGODB_URI` and assign your MongoDB connection string to it
+
+- `MONGODB_URI` - Your MongoDB connection string. If you are using [MongoDB Atlas](https://mongodb.com/atlas) you can find this by clicking the "Connect" button for your cluster.
+
+Create a variable called `BESTBUY_API_KEY` and assign your BestBuy API Key to it
+
+- `BESTBUY_API_KEY` - Get your own [here](https://developer.bestbuy.com/)
+
+
+4) Use the `npm run dev` command
+5) Access this application at [http://localhost:3000](http://localhost:3000)
+
 
 ## Considerations/Next Steps
 - I chose to seperate item information and users to prevent replication of item information which has 150+ fields. However, this means that there is a case where no user is saving an item but it still exists in our items collection. There is no benefit to this since each keyword search query will return a list of all products that match it (handled by BestBuy), regardless of if it was previously searched and saved. 
