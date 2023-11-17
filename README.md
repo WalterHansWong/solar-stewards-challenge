@@ -11,30 +11,12 @@
 
 ## Configuration
 
-### Set up environment variables
-
-Create a file called `.env.local`
-Create a variable called MONGODB_URI and assign your MongoDB connection string to it
-
-- `MONGODB_URI` - Your MongoDB connection string. If you are using [MongoDB Atlas](https://mongodb.com/atlas) you can find this by clicking the "Connect" button for your cluster.
-
-### Run Next.js in development mode
-
-```bash
-npm install
-npm run dev
-
-# or
-
-yarn install
-yarn dev
-```
-
-Your app should be up and running on [http://localhost:3000](http://localhost:3000)! If it doesn't work, post on [GitHub discussions](https://github.com/vercel/next.js/discussions).
-
-You will either see a message stating "You are connected to MongoDB" or "You are NOT connected to MongoDB". Ensure that you have provided the correct `MONGODB_URI` environment variable.
-
-When you are successfully connected, you can refer to the [MongoDB Node.js Driver docs](https://mongodb.github.io/node-mongodb-native/3.4/tutorials/collections/) for further instructions on how to query your database.
+### Instructions
+1) Clone this repo to your local machine
+2) Open Docker
+3) Navigate to the project's directory
+4) Run `docker compose up --build`
+5) Access this application at `http://localhost:3000/`
 
 ## Considerations/Next Steps
 - I chose to seperate item information and users to prevent replication of item information which has 150+ fields. However, this means that there is a case where no user is saving an item but it still exists in our items collection. There is no benefit to this since each keyword search query will return a list of all products that match it (handled by BestBuy), regardless of if it was previously searched and saved. 
