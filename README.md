@@ -12,7 +12,7 @@
 ## Configuration
 ### 1 - Through Docker
 1) Get the Docker Image using `docker pull whanswong/solar_stewards:latest`
-2) Then do `docker compose up --build -d`
+2) Then do `docker run -p 3000:3000 whanswong/solar_stewards`
 3) Access this application at [http://localhost:3000](http://localhost:3000)
 
 ### 2 - Locally
