@@ -59,56 +59,65 @@ const SavedItems = () => {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '20px' }}>
+    <div>
       <style jsx>{`
-      @keyframes fadein {
-          from { opacity: 0; }
-          to { opacity: 1; }
-      }
-      @keyframes fadeout {
-          from { opacity: 1; }
-          to { opacity: 0; }
-      }
-      /* Additional styles */
+        @keyframes fadein {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeout {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        /* Additional styles */
       `}</style>
-      
-      <h1>My Saved Items</h1>
+  
+      {/* Fixed header */}
+      <div style={{ position: 'fixed', top: 0, width: '100%', backgroundColor: 'white', zIndex: 100, borderBottom: '1px solid #ddd', padding: '10px 0', textAlign: 'center', boxSizing: 'border-box' }}>
+        <h1>My Saved Items</h1>
+        <button onClick={navigateHome} style={{ marginBottom: '20px' }}>New Search</button>
 
-      {deleteSuccess && (
-        <div style={{ position: 'fixed', top: '10px', left: '50%', transform: 'translateX(-50%)', backgroundColor: 'lightgreen', padding: '10px', borderRadius: '5px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)', animation: 'fadein 0.5s, fadeout 0.5s 2.5s' }}>
-          Item deleted successfully!
-        </div>
-      )}
-
-      {deleteError && (
-        <div style={{ position: 'fixed', top: '10px', left: '50%', transform: 'translateX(-50%)', backgroundColor: 'pink', color: 'darkred', padding: '10px', borderRadius: '5px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)', animation: 'fadein 0.5s, fadeout 0.5s 2.5s' }}>
-          Error deleting item!
-        </div>
-      )}
-
-      <button onClick={navigateHome} style={{ marginBottom: '20px' }}>New Search</button>
-
-      {isLoading ? (
-        <p>Loading Saved Items...</p>
-      ) : savedItems.length > 0 ? (
-        <ul style={{ listStyle: 'none', padding: 0, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          {/* TODO: Handle case when user has many saved items. Can use infinite scrolling or numerical pages */}
-          {/* TODO: Implement sorting of saved items, like by date or price */}
-          {savedItems.map(item => (
-            <li key={item.sku} style={{ border: '1px solid #ddd', width: '80%', maxWidth: '500px', margin: '10px', padding: '10px', borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-              <img src={item.thumbnailImage} alt={item.name} style={{ width: '100px', height: '100px', marginBottom: '10px' }} />
-              <div><strong>Name:</strong> {item.name}</div>
-              <div><strong>Price:</strong> ${item.salePrice}</div>
-              <a href={item.url} target="_blank" rel="noopener noreferrer" style={{ marginTop: '10px', marginBottom: '10px' }}>View on BestBuy</a>
-              <button onClick={() => handleDeleteItem(item.sku)} style={{ marginTop: '10px' }}>Delete from Wishlist</button>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No saved items found</p>
-      )}
+        {deleteSuccess && (
+          <div style={{ backgroundColor: 'lightgreen', padding: '10px', borderRadius: '5px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)', animation: 'fadein 0.5s, fadeout 0.5s 2.5s' }}>
+            Item deleted successfully!
+          </div>
+        )}
+  
+        {deleteError && (
+          <div style={{ backgroundColor: 'pink', color: 'darkred', padding: '10px', borderRadius: '5px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)', animation: 'fadein 0.5s, fadeout 0.5s 2.5s' }}>
+            Error deleting item!
+          </div>
+        )}
+      </div>
+  
+      {/* Main content */}
+      <div style={{ marginTop: '120px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}> 
+        {isLoading ? (
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 'calc(100vh - 120px)' }}>
+            <p>Loading Saved Items...</p>
+          </div>
+        ) : savedItems.length > 0 ? (
+          <ul style={{ listStyle: 'none', padding: 0, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            {/* TODO: Handle case when user has many saved items. Can use infinite scrolling or numerical pages */}
+            {/* TODO: Implement sorting of saved items, like by date or price */}
+            {savedItems.map(item => (
+              <li key={item.sku} style={{ border: '1px solid #ddd', width: '80%', maxWidth: '500px', margin: '10px', padding: '10px', borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+                <img src={item.thumbnailImage} alt={item.name} style={{ width: '100px', height: '100px', marginBottom: '10px' }} />
+                <div><strong>Name:</strong> {item.name}</div>
+                <div><strong>Price:</strong> ${item.salePrice}</div>
+                <a href={item.url} target="_blank" rel="noopener noreferrer" style={{ marginTop: '10px', marginBottom: '10px' }}>View on BestBuy</a>
+                <button onClick={() => handleDeleteItem(item.sku)} style={{ marginTop: '10px' }}>Delete from Wishlist</button>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 'calc(100vh - 120px)' }}>
+            <p>No saved items found</p>
+          </div>
+        )}
+      </div>
     </div>
-  );
+  );  
 };
 
 export default SavedItems;
