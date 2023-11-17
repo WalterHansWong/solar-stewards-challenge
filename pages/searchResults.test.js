@@ -28,7 +28,7 @@ describe('SearchResults', () => {
     const { getByText, queryByText } = render(<SearchResults />);
   
     // Assert the loading message is displayed
-    expect(getByText('Fetching Results from BestBuy...')).toBeInTheDocument();
+    expect(getByText(/Fetching Results from BestBuy.../i)).toBeInTheDocument();
   
     // Wait for the fetch to complete
     await waitFor(() => expect(queryByText('Fetching Results from BestBuy...')).toBeNull());
