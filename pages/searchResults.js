@@ -98,10 +98,12 @@ const SearchResults = () => {
       ) : results.length > 0 ? (
         <ul style={{ listStyle: 'none', padding: 0, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           {results.map(product => (
-            <li key={product.sku} style={{ border: '1px solid #ddd', width: '80%', maxWidth: '500px', margin: '10px', padding: '10px', borderRadius: '8px', textAlign: 'left', wordWrap: 'break-word' }}>
-              <div>Name: {product.name}</div>
-              <div>Price: ${product.salePrice}</div>
-              <button onClick={() => handleSaveItem(product)} style={{ marginTop: '10px' }}>Save to Wishlist</button>
+            <li key={product.sku} style={{ border: '1px solid #ddd', width: '80%', maxWidth: '500px', margin: '10px', padding: '10px', borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+              <img src={product.thumbnailImage} alt={product.name} style={{ width: '100px', height: '100px', marginBottom: '10px' }} />
+              <div><strong>Name:</strong> {product.name}</div>
+              <div><strong>Price:</strong> ${product.salePrice}</div>
+              <a href={product.url} target="_blank" rel="noopener noreferrer" style={{ marginTop: '10px', marginBottom: '10px' }}>View on BestBuy</a>
+              <button onClick={() => handleSaveItem(product)} style={{ padding: '10px 20px' }}>Save to Wishlist</button>
             </li>
           ))}
         </ul>
