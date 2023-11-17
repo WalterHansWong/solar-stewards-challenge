@@ -10,6 +10,7 @@ export default async function handler(req, res) {
   // Connect to the MongoDB client
   const client = await clientPromise;
   const db = client.db("bestBuyWishlist");
+  
   const { userID, product } = req.body;
 
   try {

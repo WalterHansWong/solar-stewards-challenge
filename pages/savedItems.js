@@ -26,7 +26,29 @@ const SavedItems = () => {
   }, []);
 
   const handleDeleteItem = async (sku) => {
-    // ... handle delete logic
+    const userID = localStorage.getItem('userID');
+    if (!userID) {
+      console.error('User ID not found');
+      return;
+    }
+  
+    try {
+      const response = await fetch('/api/deleteItem', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userID, sku }),
+      });
+  
+      if (!response.ok) throw new Error('Error deleting item');
+  
+      // Update the local state to reflect the deletion
+      setSavedItems(prevItems => prevItems.filter(item => item.sku !== sku));
+    } catch (error) {
+      console.error('Error deleting item:', error);
+      // Handle error state
+    }
   };
 
   const navigateHome = () => {
