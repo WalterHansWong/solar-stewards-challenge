@@ -80,8 +80,8 @@ const SearchResults = () => {
       <div style={{ position: 'fixed', top: 0, width: '100%', backgroundColor: 'white', zIndex: 100, borderBottom: '1px solid #ddd', padding: '10px 0', textAlign: 'center', boxSizing: 'border-box' }}>
         <h1>Search Results</h1>
         <div style={{ marginBottom: '20px' }}>
-          <button onClick={() => router.push('/')} style={{ marginRight: '10px' }}>New Search</button>
-          <button onClick={() => router.push('/savedItems')}>See Saved Items</button>
+          <button onClick={navigateHome} style={{ marginRight: '10px' }}>New Search</button>
+          <button onClick={navigateToSavedItems}>See Saved Items</button>
 
           {saveSuccess && (
             <div style={{ position: 'fixed', top: '10px', left: '50%', transform: 'translateX(-50%)', backgroundColor: 'lightgreen', padding: '10px', borderRadius: '5px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)', animation: 'fadein 0.5s, fadeout 0.5s 2.5s' }}>

@@ -78,16 +78,16 @@ const SavedItems = () => {
         <button onClick={navigateHome} style={{ marginBottom: '20px' }}>New Search</button>
 
         {deleteSuccess && (
-          <div style={{ backgroundColor: 'lightgreen', padding: '10px', borderRadius: '5px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)', animation: 'fadein 0.5s, fadeout 0.5s 2.5s' }}>
-            Item deleted successfully!
-          </div>
-        )}
+            <div style={{ position: 'fixed', top: '10px', left: '50%', transform: 'translateX(-50%)', backgroundColor: 'lightgreen', padding: '10px', borderRadius: '5px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)', animation: 'fadein 0.5s, fadeout 0.5s 2.5s' }}>
+              Item deleted successfully!
+            </div>
+          )}
   
         {deleteError && (
-          <div style={{ backgroundColor: 'pink', color: 'darkred', padding: '10px', borderRadius: '5px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)', animation: 'fadein 0.5s, fadeout 0.5s 2.5s' }}>
-            Error deleting item!
-          </div>
-        )}
+            <div style={{ position: 'fixed', top: '10px', left: '50%', transform: 'translateX(-50%)', backgroundColor: 'pink', color: 'darkred', padding: '10px', borderRadius: '5px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)', animation: 'fadein 0.5s, fadeout 0.5s 2.5s' }}>
+              Error deleting item!
+            </div>
+          )}
       </div>
   
       {/* Main content */}
