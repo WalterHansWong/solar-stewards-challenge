@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, waitFor, fireEvent } from '@testing-library/react';
-import SearchResults from './searchResults';
+import SearchResults from '../pages/searchResults';
 import '@testing-library/jest-dom';
 import fetchMock from 'jest-fetch-mock';
 
